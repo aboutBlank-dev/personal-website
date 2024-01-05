@@ -1,9 +1,9 @@
 import { PageType } from "../App";
 
 type Props = {
-  isTopOfPage: boolean;
-  selectedPage: PageType;
-  setSelectedPage: (page: string) => void;
+  isTopOfPage?: boolean;
+  selectedPage?: PageType;
+  setSelectedPage?: (page: string) => void;
 };
 
 function NavBar({}: Props) {

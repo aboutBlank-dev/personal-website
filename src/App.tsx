@@ -1,38 +1,44 @@
-import { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { useEffect, useState } from "react";
+import { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import { backgroundSourceOptions } from "./particles/sourceOptions/backgroundSourceOptions";
+import DarkModeToggle from "./components/darkmodeToggle";
+import ParticleBackground from "./components/particleBackground";
+import DarkModeUtils from "./utils/darkModeUtils";
+import { DarkModeContext } from "./contexts/darkModeContext";
 
 function App() {
-  const [init, setInit] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    DarkModeUtils.getDefaultIsDarkMode()
+  );
+
+  const setDarkMode = (isDarkMode: boolean) => {
+    setIsDarkMode(isDarkMode);
+    DarkModeUtils.setDarkMode(isDarkMode);
+  };
+
+  //Set dark mode based on system preference/previous preference (only once at the start of app)
+  useEffect(() => {
+    DarkModeUtils.setDarkMode(isDarkMode);
+  }, []);
+
+  const [particlesInit, setParticlesInit] = useState(false);
   //Load particles.js. This should only run once per lifetime
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => {
-      setInit(true);
+      setParticlesInit(true);
     });
   }, []);
 
-  const backgroundOptions = useMemo(() => backgroundSourceOptions, []);
-  if (init) {
-    return (
-      <div>
-        {/* Background of the Entire App */}
-        <Particles
-          id='backgroundParticles'
-          options={backgroundOptions}
-          className='fixed z-[-10]'
-        />
-      </div>
-    );
-  }
-
-  return <></>;
+  return (
+    <DarkModeContext.Provider
+      value={{ isDarkMode: isDarkMode, setDarkMode: setDarkMode }}
+    >
+      {particlesInit && <ParticleBackground />}
+      <DarkModeToggle />
+    </DarkModeContext.Provider>
+  );
 }
 
 export default App;
-
-export enum PageType {
-  Home,
-}
