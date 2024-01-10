@@ -16,7 +16,7 @@ function App() {
     DarkModeUtils.setDarkMode(isDarkMode);
   };
 
-  //Set dark mode based on system preference/previous preference (only once at the start of app)
+  // //Set dark mode based on system preference/previous preference (only once at the start of app)
   useEffect(() => {
     DarkModeUtils.setDarkMode(isDarkMode);
   }, []);

@@ -3,25 +3,15 @@ import Particles from "@tsparticles/react";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import { DarkModeContext } from "../contexts/darkModeContext";
 
-const LightBackgroundColor = "#f0e7db";
-const DarkBackgroundColor = "#202023";
-const LightParticleColor = "#202023";
+const LightParticleColor = "#964B00";
 const DarkParticleColor = "#ffffff";
 
 const ParticleBackground = () => {
   const containerRef = useRef<Container | undefined>(undefined);
   const { isDarkMode } = useContext(DarkModeContext);
-  const backgroundColor = isDarkMode
-    ? DarkBackgroundColor
-    : LightBackgroundColor;
   const particleColor = isDarkMode ? DarkParticleColor : LightParticleColor;
 
   const backgroundOptions: ISourceOptions = {
-    background: {
-      color: {
-        value: backgroundColor,
-      },
-    },
     fpsLimit: 120,
     interactivity: {
       detectsOn: "canvas",
@@ -79,17 +69,12 @@ const ParticleBackground = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const backgroundColor = isDarkMode
-      ? DarkBackgroundColor
-      : LightBackgroundColor;
     const particleColor = isDarkMode ? DarkParticleColor : LightParticleColor;
-    containerRef.current.options.background.color.value = backgroundColor;
     containerRef.current.options.particles.color.value = particleColor;
     containerRef.current.refresh().then();
   }, [isDarkMode]);
 
   return useMemo(() => {
-    console.log("rendering particle background");
     return (
       <div>
         <Particles
