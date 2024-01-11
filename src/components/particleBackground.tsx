@@ -14,7 +14,7 @@ const ParticleBackground = () => {
   const backgroundOptions: ISourceOptions = {
     fpsLimit: 120,
     interactivity: {
-      detectsOn: "canvas",
+      detectsOn: "window",
       events: {
         onHover: {
           enable: true,
@@ -76,7 +76,7 @@ const ParticleBackground = () => {
 
   return useMemo(() => {
     return (
-      <div>
+      <div id='particleBackground'>
         <Particles
           id='backgroundParticles'
           options={backgroundOptions}
@@ -88,4 +88,4 @@ const ParticleBackground = () => {
   }, []);
 };
 
-export default memo(ParticleBackground);
+export default ParticleBackground;
