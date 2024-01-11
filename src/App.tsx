@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import { loadFull } from "tsparticles";
 import DarkModeToggle from "./components/darkmodeToggle";
 import ParticleBackground from "./components/particleBackground";
 import DarkModeUtils from "./utils/darkModeUtils";
@@ -25,7 +25,7 @@ function App() {
   //Load particles.js. This should only run once per lifetime
   useEffect(() => {
     initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
+      await loadFull(engine);
     }).then(() => {
       setParticlesInit(true);
     });

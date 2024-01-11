@@ -1,11 +1,12 @@
 export default class DarkModeUtils {
   static getDefaultIsDarkMode(): boolean {
-    const matches = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (localStorage.getItem("color-theme") === "dark" || matches) {
+    if (localStorage.getItem("color-theme") === "dark") {
       return true;
-    } else {
+    } else if (localStorage.getItem("color-theme") === "light") {
       return false;
     }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
 
   static setDarkMode(isDarkMode: boolean): void {
