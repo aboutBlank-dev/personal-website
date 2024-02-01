@@ -5,6 +5,7 @@ import DarkModeToggle from "./components/darkmodeToggle";
 import ParticleBackground from "./components/particleBackground";
 import DarkModeUtils from "./utils/darkModeUtils";
 import { DarkModeContext } from "./contexts/darkModeContext";
+import ThreeD from "./threeFiber/three";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -37,6 +38,9 @@ function App() {
     >
       {particlesInit && <ParticleBackground />}
       <DarkModeToggle />
+      <div className='h-[300px] w-full'>
+        <ThreeD />
+      </div>
     </DarkModeContext.Provider>
   );
 }
