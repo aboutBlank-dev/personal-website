@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/fiber": "^8.15.16",
     "@tsparticles/engine": "^3.0.3",
     "@tsparticles/react": "^3.0.0",
+    "@types/three": "^0.161.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "three": "^0.161.0",
     "tsparticles": "^3.0.3"
   },
   "devDependencies": {
