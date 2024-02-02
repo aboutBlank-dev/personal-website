@@ -8,7 +8,7 @@ const ThreeD = () => {
       camera={{ zoom: 50, position: [0, 0, 10], near: 0 }}
       className='bg-transparent'
     >
-      <ambientLight intensity={1} />
+      <ambientLight intensity={3.5} />
       <AboutBlankText />
     </Canvas>
   );

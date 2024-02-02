@@ -1,47 +1,34 @@
-import { useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-import { Box3, Group } from "three";
+import { Center, Text3D } from "@react-three/drei";
+import { useContext, useEffect, useRef } from "react";
+import { Group } from "three";
+import { DarkModeContext } from "../contexts/darkModeContext";
 
 const AboutBlankText = () => {
-  const { scene } = useGLTF("/output.gltf");
-  const [xPosition, setXPosition] = useState(0);
   const groupRef = useRef<Group>(null!);
+  const { isDarkMode } = useContext(DarkModeContext);
 
   useEffect(() => {
-    const box = new Box3().setFromObject(scene);
-    const width = box.max.x - box.min.x;
-    setXPosition(-0.5 * width);
+    window.document.addEventListener("mousemove", (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      if (groupRef.current) {
+        groupRef.current.rotation.x = y - 0.5;
+        groupRef.current.rotation.y = x - 0.5;
+      }
+    });
   }, []);
 
-  const rotationSpeed = 0.1;
-  let rotationDirection = 1;
-  useFrame((state, delta, xrFrame) => {
-    groupRef.current.rotation.y += delta * rotationSpeed * rotationDirection;
-    groupRef.current.rotation.x += delta * rotationSpeed * rotationDirection;
-    groupRef.current.rotation.z +=
-      ((delta * rotationSpeed) / 10) * rotationDirection;
-
-    if (groupRef.current.rotation.y > Math.PI / 6) {
-      rotationDirection = -1;
-    } else if (groupRef.current.rotation.y < -(Math.PI / 6)) {
-      rotationDirection = 1;
-    }
-  });
-
-  if (!scene) return null;
   return (
-    <group
-      ref={groupRef}
-      onPointerEnter={() => {
-        if (groupRef.current) {
-          groupRef.current.rotation.x = 0;
-          groupRef.current.rotation.y = 0;
-          groupRef.current.rotation.z = 0;
-        }
-      }}
-    >
-      <primitive object={scene} scale={0.025} position={[xPosition, 0, 0]} />
+    <group ref={groupRef}>
+      <Center>
+        <Text3D font={"/Black Ops One_Regular.json"}>
+          about:Blank
+          <meshStandardMaterial
+            attach='material'
+            color={isDarkMode ? "#ffffff" : "#964B00"}
+          />
+        </Text3D>
+      </Center>
     </group>
   );
   return;
