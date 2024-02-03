@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import Particles from "@tsparticles/react";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import { DarkModeContext } from "../contexts/darkModeContext";
