@@ -11,54 +11,6 @@ const ParticleBackground = () => {
   const { isDarkMode } = useContext(DarkModeContext);
   const particleColor = isDarkMode ? DarkParticleColor : LightParticleColor;
 
-  // const backgroundOptions: ISourceOptions = {
-  //   fpsLimit: 60,
-  //   particles: {
-  //     rotate: {
-  //       random: true,
-  //       direction: "",
-  //       animation: {
-  //         enable: true,
-  //         speed: 0.5,
-  //         random: false,
-  //       },
-  //     },
-  //     color: {
-  //       value: particleColor,
-  //     },
-  //     opacity: {
-  //       value: 0.5,
-  //     },
-  //     shape: {
-  //       type: "char",
-  //       options: {
-  //         char: [
-  //           {
-  //             fill: true,
-  //             font: "Verdana",
-  //             style: "",
-  //             value: ["[]"],
-  //             weight: "1000",
-  //           },
-  //         ],
-  //       },
-  //     },
-  //     move: {
-  //       direction: "bottom",
-  //       enable: true,
-  //       speed: 1,
-  //       straight: true,
-  //     },
-  //     number: {
-  //       value: 10,
-  //     },
-  //     size: {
-  //       value: 100,
-  //     },
-  //   },
-  //   detectRetina: true,
-  // };
-
   const backgroundOptions: ISourceOptions = {
     autoPlay: true,
     clear: true,

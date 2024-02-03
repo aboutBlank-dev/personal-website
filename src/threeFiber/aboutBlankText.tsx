@@ -8,21 +8,26 @@ const AboutBlankText = () => {
   const { isDarkMode } = useContext(DarkModeContext);
 
   useEffect(() => {
-    window.document.addEventListener("mousemove", (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
       if (groupRef.current) {
         groupRef.current.rotation.x = y - 0.5;
         groupRef.current.rotation.y = x - 0.5;
       }
-    });
+    };
+
+    window.document.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.document.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   return (
     <group ref={groupRef}>
       <Center>
         <Text3D font={"/Black Ops One_Regular.json"}>
-          about:Blank
+          [about:Blank]
           <meshStandardMaterial
             attach='material'
             color={isDarkMode ? "#ffffff" : "#964B00"}

@@ -1,17 +1,17 @@
 import { Canvas } from "@react-three/fiber";
 import AboutBlankText from "./aboutBlankText";
 
-const ThreeD = () => {
+const ThreeCanvas = () => {
   return (
     <Canvas
       orthographic
       camera={{ zoom: 50, position: [0, 0, 10], near: 0 }}
       className='bg-transparent'
     >
-      <ambientLight intensity={3.5} />
+      <directionalLight intensity={3.5} position={[0, 1, 1]} />
       <AboutBlankText />
     </Canvas>
   );
 };
 
-export default ThreeD;
+export default ThreeCanvas;
