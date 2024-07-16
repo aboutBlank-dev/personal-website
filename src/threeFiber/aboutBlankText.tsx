@@ -1,11 +1,11 @@
 import { Center, Text3D } from "@react-three/drei";
 import { useContext, useEffect, useRef } from "react";
 import { Group } from "three";
-import { DarkModeContext } from "../contexts/darkModeContext";
+import { useTheme } from "../contexts/themeContext";
 
 const AboutBlankText = () => {
   const groupRef = useRef<Group>(null!);
-  const { isDarkMode } = useContext(DarkModeContext);
+  const theme = useTheme();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -30,7 +30,7 @@ const AboutBlankText = () => {
           [about:Blank]
           <meshStandardMaterial
             attach='material'
-            color={isDarkMode ? "#ffffff" : "#964B00"}
+            color={theme.currentTheme == "dark" ? "#ffffff" : "#964B00"}
           />
         </Text3D>
       </Center>

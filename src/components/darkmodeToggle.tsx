@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import { DarkModeContext } from "../contexts/darkModeContext";
+import { useTheme } from "../contexts/themeContext";
 
 const DarkModeToggle = () => {
-  const { isDarkMode, setDarkMode } = useContext(DarkModeContext);
+  const theme = useTheme();
+
   return (
     <div className='flex justify-center items-center'>
       <input
         type='checkbox'
         id='light-switch'
         className='hidden'
-        checked={isDarkMode}
+        checked={theme.currentTheme === "dark"}
         onChange={() => {
-          setDarkMode(!isDarkMode);
+          theme.toggleTheme();
         }}
       />
       <label className='relative cursor-pointer p-2' htmlFor='light-switch'>

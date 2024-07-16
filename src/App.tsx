@@ -3,26 +3,12 @@ import { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import DarkModeToggle from "./components/darkmodeToggle";
 import ParticleBackground from "./components/particleBackground";
-import DarkModeUtils from "./utils/darkModeUtils";
-import { DarkModeContext } from "./contexts/darkModeContext";
+import { ThemeContextProvider } from "./contexts/themeContext";
 import ThreeCanvas from "./threeFiber/three";
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(
-    DarkModeUtils.getDefaultIsDarkMode()
-  );
-
-  const setDarkMode = (isDarkMode: boolean) => {
-    setIsDarkMode(isDarkMode);
-    DarkModeUtils.setDarkMode(isDarkMode);
-  };
-
-  //Set dark mode based on system preference/previous preference (only once at the start of app)
-  useEffect(() => {
-    DarkModeUtils.setDarkMode(isDarkMode);
-  }, []);
-
   const [particlesInit, setParticlesInit] = useState(false);
+
   //Load particles.js. This should only run once per lifetime
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -33,15 +19,13 @@ function App() {
   }, []);
 
   return (
-    <DarkModeContext.Provider
-      value={{ isDarkMode: isDarkMode, setDarkMode: setDarkMode }}
-    >
+    <ThemeContextProvider>
       {particlesInit && <ParticleBackground />}
       <DarkModeToggle />
       <div className='h-[200px] w-full'>
         <ThreeCanvas />
       </div>
-    </DarkModeContext.Provider>
+    </ThemeContextProvider>
   );
 }
 
