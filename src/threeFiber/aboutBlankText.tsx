@@ -1,5 +1,5 @@
 import { Center, Text3D } from "@react-three/drei";
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Group } from "three";
 import { useTheme } from "../contexts/themeContext";
 

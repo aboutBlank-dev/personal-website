@@ -4,7 +4,6 @@ import { loadFull } from "tsparticles";
 import DarkModeToggle from "./components/darkmodeToggle";
 import ParticleBackground from "./components/particleBackground";
 import { ThemeContextProvider } from "./contexts/themeContext";
-import ThreeCanvas from "./threeFiber/three";
 
 function App() {
   const [particlesInit, setParticlesInit] = useState(false);
@@ -22,9 +21,6 @@ function App() {
     <ThemeContextProvider>
       {particlesInit && <ParticleBackground />}
       <DarkModeToggle />
-      <div className='h-[200px] w-full'>
-        <ThreeCanvas />
-      </div>
     </ThemeContextProvider>
   );
 }

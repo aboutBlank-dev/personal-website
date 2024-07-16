@@ -1,7 +1,6 @@
 import { Canvas } from "@react-three/fiber";
-import AboutBlankText from "./aboutBlankText";
 
-const ThreeCanvas = () => {
+const ThreeCanvas = (children: React.ReactNode) => {
   return (
     <Canvas
       orthographic
@@ -9,7 +8,7 @@ const ThreeCanvas = () => {
       className='bg-transparent'
     >
       <directionalLight intensity={3.5} position={[0, 1, 1]} />
-      <AboutBlankText />
+      {children}
     </Canvas>
   );
 };
