@@ -4,6 +4,8 @@ import { loadFull } from "tsparticles";
 import DarkModeToggle from "./components/darkmodeToggle";
 import ParticleBackground from "./components/particleBackground";
 import { ThemeContextProvider } from "./contexts/themeContext";
+import ThreeCanvas from "./threeFiber/three";
+import { CoinWithImage } from "./threeFiber/coinWithImage";
 
 function App() {
   const [particlesInit, setParticlesInit] = useState(false);
@@ -21,6 +23,11 @@ function App() {
     <ThemeContextProvider>
       {particlesInit && <ParticleBackground />}
       <DarkModeToggle />
+      <div className=' h-64'>
+        <ThreeCanvas>
+          <CoinWithImage imageUrl='src\assets\Photo_Jose.JPG' />
+        </ThreeCanvas>
+      </div>
     </ThemeContextProvider>
   );
 }
