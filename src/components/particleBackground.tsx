@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Particles from "@tsparticles/react";
-import { Container, ISourceOptions } from "@tsparticles/engine";
+import { ISourceOptions } from "@tsparticles/engine";
 import { useTheme } from "../contexts/themeContext";
 
 const LightParticleColor = "#964B00";
@@ -15,6 +15,7 @@ const ParticleBackground = () => {
   useEffect(() => {
     setBackgroundOptions((prevOptions) => {
       const newOptions = { ...prevOptions };
+
       if (newOptions?.particles?.color) {
         newOptions.particles.color.value =
           theme.currentTheme === "dark"
@@ -25,23 +26,112 @@ const ParticleBackground = () => {
     });
   }, [theme.currentTheme]);
 
-  return <Particles id='backgroundParticles' options={backgroundOptions} />;
+  return (
+    <div className='blur-[2px] w-full h-screen fixed'>
+      <Particles id='backgroundParticles' options={backgroundOptions} />
+    </div>
+  );
 };
 
 export default ParticleBackground;
 
 const BackgroundOptions: ISourceOptions = {
   autoPlay: true,
+  backgroundMask: {
+    composite: "destination-out",
+    cover: {
+      color: {
+        value: "#fff",
+      },
+      opacity: 1,
+    },
+    enable: false,
+  },
   clear: true,
-  defaultThemes: {},
-  detectRetina: true,
-  fpsLimit: 60,
+  delay: 0,
   fullScreen: {
     enable: true,
-    zIndex: -10,
+    zIndex: 0,
+  },
+  detectRetina: true,
+  duration: 0,
+  fpsLimit: 120,
+  interactivity: {
+    detectsOn: "window",
+    events: {
+      onClick: {
+        enable: true,
+        mode: "push",
+      },
+      onHover: {
+        enable: true,
+        parallax: {
+          enable: true,
+          force: 60,
+          smooth: 10,
+        },
+      },
+    },
+    modes: {
+      trail: {
+        delay: 1,
+        pauseOnStop: false,
+        quantity: 1,
+      },
+      attract: {
+        distance: 200,
+        duration: 0.4,
+        easing: "ease-out-quad",
+        factor: 1,
+        maxSpeed: 50,
+        speed: 1,
+      },
+      bounce: {
+        distance: 200,
+      },
+      bubble: {
+        distance: 400,
+        duration: 2,
+        mix: false,
+        opacity: 0.8,
+        size: 40,
+        divs: {
+          distance: 200,
+          duration: 0.4,
+          mix: false,
+          selectors: {},
+        },
+      },
+      grab: {
+        distance: 400,
+      },
+      remove: {
+        quantity: 2,
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4,
+        factor: 100,
+        speed: 1,
+        maxSpeed: 50,
+        easing: "ease-out-quad",
+        divs: {
+          distance: 200,
+          duration: 0.4,
+          factor: 100,
+          speed: 1,
+          maxSpeed: 50,
+          easing: "ease-out-quad",
+          selectors: {},
+        },
+      },
+      slow: {
+        factor: 3,
+        radius: 200,
+      },
+    },
   },
   particles: {
-    resize: true,
     bounce: {
       horizontal: {
         value: 1,
@@ -71,7 +161,7 @@ const BackgroundOptions: ISourceOptions = {
       },
     },
     color: {
-      value: LightParticleColor,
+      value: "#ffffff",
       animation: {
         h: {
           count: 0,
@@ -102,6 +192,11 @@ const BackgroundOptions: ISourceOptions = {
         },
       },
     },
+    effect: {
+      close: true,
+      fill: true,
+      options: {},
+    },
     move: {
       angle: {
         offset: 0,
@@ -122,8 +217,7 @@ const BackgroundOptions: ISourceOptions = {
         radius: 0,
       },
       decay: 0,
-      distance: {},
-      direction: "bottom",
+      direction: "none",
       drift: 0,
       enable: true,
       gravity: {
@@ -142,20 +236,19 @@ const BackgroundOptions: ISourceOptions = {
       },
       outModes: {
         default: "out",
+        bottom: "out",
+        left: "out",
+        right: "out",
+        top: "out",
       },
-      random: false,
+      random: true,
       size: false,
       speed: 2,
       spin: {
         acceleration: 0,
         enable: false,
       },
-      straight: true,
-      trail: {
-        enable: false,
-        length: 10,
-        fill: {},
-      },
+      straight: false,
       vibrate: false,
       warp: false,
     },
@@ -169,14 +262,17 @@ const BackgroundOptions: ISourceOptions = {
         mode: "delete",
         value: 0,
       },
-      value: 400,
+      value: 100,
     },
     opacity: {
-      value: 1,
+      value: {
+        min: 0.1,
+        max: 0.5,
+      },
       animation: {
         count: 0,
-        enable: false,
-        speed: 2,
+        enable: true,
+        speed: 3,
         decay: 0,
         delay: 0,
         sync: false,
@@ -204,11 +300,14 @@ const BackgroundOptions: ISourceOptions = {
       type: "circle",
     },
     size: {
-      value: 10,
+      value: {
+        min: 1,
+        max: 10,
+      },
       animation: {
         count: 0,
-        enable: false,
-        speed: 5,
+        enable: true,
+        speed: 20,
         decay: 0,
         delay: 0,
         sync: false,
@@ -217,17 +316,11 @@ const BackgroundOptions: ISourceOptions = {
         destroy: "none",
       },
     },
-    stroke: {
-      width: 0,
-    },
     zIndex: {
-      value: {
-        min: 0,
-        max: 100,
-      },
-      opacityRate: 10,
-      sizeRate: 10,
-      velocityRate: 10,
+      value: 0,
+      opacityRate: 1,
+      sizeRate: 1,
+      velocityRate: 1,
     },
     destroy: {
       bounds: {},
@@ -244,6 +337,7 @@ const BackgroundOptions: ISourceOptions = {
           },
         },
         sizeOffset: true,
+        particles: {},
       },
     },
     roll: {
@@ -271,11 +365,6 @@ const BackgroundOptions: ISourceOptions = {
       enable: false,
     },
     twinkle: {
-      lines: {
-        enable: false,
-        frequency: 0.05,
-        opacity: 1,
-      },
       particles: {
         enable: false,
         frequency: 0.05,
@@ -283,10 +372,10 @@ const BackgroundOptions: ISourceOptions = {
       },
     },
     wobble: {
-      distance: 10,
-      enable: true,
+      distance: 5,
+      enable: false,
       speed: {
-        angle: 10,
+        angle: 50,
         move: 10,
       },
     },
@@ -328,30 +417,6 @@ const BackgroundOptions: ISourceOptions = {
       },
       width: 1,
     },
-    links: {
-      blink: false,
-      color: {
-        value: "#fff",
-      },
-      consent: false,
-      distance: 100,
-      enable: false,
-      frequency: 1,
-      opacity: 1,
-      shadow: {
-        blur: 5,
-        color: {
-          value: "#000",
-        },
-        enable: false,
-      },
-      triangles: {
-        enable: false,
-        frequency: 1,
-      },
-      width: 1,
-      warp: false,
-    },
     repulse: {
       value: 0,
       enabled: false,
@@ -361,7 +426,10 @@ const BackgroundOptions: ISourceOptions = {
       speed: 1,
     },
   },
+  responsive: [],
   smooth: false,
+  style: {},
+  themes: [],
   zLayers: 100,
   motion: {
     disable: false,

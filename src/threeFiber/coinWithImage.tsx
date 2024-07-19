@@ -1,6 +1,5 @@
-import { a, useSpring, useTransition } from "@react-spring/three";
+import { a, useSpring } from "@react-spring/three";
 import { useTexture } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { DoubleSide, Group, Mesh, Texture, Vector3 } from "three";
 import { useTheme } from "../contexts/themeContext";
@@ -9,14 +8,13 @@ interface CoinWithImageProps {
   imageUrl: string;
 }
 
-const TimeBetweenTransitionsMS = 1200;
+const TimeBetweenTransitionsMS = 2000;
 export const CoinWithImage = ({
   imageUrl,
 }: CoinWithImageProps): React.ReactNode => {
   const theme = useTheme();
   const texture: Texture = useTexture(imageUrl);
   const meshRef = useRef<Group>(null!);
-  const [hovered, setHovered] = useState(false);
   const [springIndex, setSpringIndex] = useState(0);
 
   const springs = [
@@ -26,19 +24,9 @@ export const CoinWithImage = ({
     { rotation: [-0.3, 0.2, 0.1] },
   ];
 
-  const { scale, rotation } = useSpring({
-    scale: hovered ? 2 : 1.5,
-    rotation: hovered ? springs[springIndex].rotation : [0, 0, 0],
-    config: { mass: 1, tension: 100, friction: 50 },
-  });
-
-  useFrame((state, delta) => {
-    if (meshRef.current) {
-      // Add slight hover effect
-      meshRef.current.position.y = hovered
-        ? Math.sin(state.clock.getElapsedTime() * 2) * 0.1
-        : 0;
-    }
+  const { rotation } = useSpring({
+    rotation: springs[springIndex].rotation,
+    config: { mass: 1, tension: 200, friction: 50 },
   });
 
   // Transition between different rotations (by changing the index)
@@ -51,24 +39,21 @@ export const CoinWithImage = ({
     }, TimeBetweenTransitionsMS);
 
     return () => clearInterval(interval);
-  }, []); // Empty dependency array ensures effect runs only once on mount
+  }, []);
 
   return (
     <a.group
       ref={meshRef}
-      scale={scale}
-      rotation={rotation as any}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
+      // rotation={rotation as any}
     >
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[1, 1, 0.1, 32, 1, true]} />
+        <cylinderGeometry args={[2, 2, 0.5, 32, 1, true]} />
         <meshStandardMaterial
           color={theme.currentTheme == "dark" ? "gray" : "#964B00"}
         />
       </mesh>
       <mesh position={[0, 0, 0.05]}>
-        <circleGeometry args={[1, 32]} />
+        <circleGeometry args={[2, 32]} />
         <meshStandardMaterial map={texture} side={DoubleSide} />
       </mesh>
     </a.group>

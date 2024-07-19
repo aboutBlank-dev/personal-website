@@ -11,7 +11,7 @@ const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ children }) => {
       camera={{ zoom: 50, position: [0, 0, 10], near: 0 }}
       className='bg-transparent'
     >
-      <ambientLight intensity={4} />
+      <ambientLight intensity={2.5} />
       {children}
     </Canvas>
   );
