@@ -1,6 +1,5 @@
 import { CoinWithImage } from "../threeFiber/coinWithImage";
 import { LookAtMouse } from "../threeFiber/reusable/lookAtMouse";
-import { RotateOnClick } from "../threeFiber/reusable/rotateOnClick";
 import ThreeCanvas from "../threeFiber/threeCanvas";
 
 interface CiruclarPhotoDisplayProps {
@@ -12,11 +11,9 @@ export const CircularPhotoDisplay = ({
 }: CiruclarPhotoDisplayProps) => {
   return (
     <ThreeCanvas>
-      <RotateOnClick rotationTime={0.4}>
-        <LookAtMouse>
-          <CoinWithImage imageUrl={photoUrl} />
-        </LookAtMouse>
-      </RotateOnClick>
+      <LookAtMouse stopWhenHovered={true}>
+        <CoinWithImage imageUrl={photoUrl} />
+      </LookAtMouse>
     </ThreeCanvas>
   );
 };

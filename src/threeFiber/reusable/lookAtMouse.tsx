@@ -47,6 +47,10 @@ const useLookAtMouse = (
     // Make the object look at the target position
     objectRef.current.lookAt(target.current);
   });
+
+  if (!enabled) {
+    objectRef.current?.lookAt(0, 0, 0);
+  }
 };
 
 interface LookAtMouseProps {
@@ -65,9 +69,7 @@ export const LookAtMouse = ({
 
   const handlePointer = (over: boolean) => {
     if (!stopWhenHovered) return;
-
     setEnabled(!over);
-    if (over) groupRef.current.lookAt(0, 0, 0);
   };
 
   return (
