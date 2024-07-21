@@ -13,7 +13,7 @@ export const Hover = ({ children, hoverIntensity = 0.1 }: HoverProps) => {
 
   useFrame((state, delta) => {
     if (groupRef.current) {
-      // Add slight hover effect
+      // Add hover effect
       groupRef.current.position.y = hovered
         ? 0
         : Math.sin(state.clock.getElapsedTime() * 2) * hoverIntensity;

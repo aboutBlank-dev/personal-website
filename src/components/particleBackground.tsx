@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import Particles from "@tsparticles/react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { ISourceOptions } from "@tsparticles/engine";
 import { useTheme } from "../contexts/themeContext";
+import { loadFull } from "tsparticles";
 
 const LightParticleColor = "#964B00";
 const DarkParticleColor = "#ffffff";
@@ -9,7 +10,17 @@ const DarkParticleColor = "#ffffff";
 const ParticleBackground = () => {
   const [backgroundOptions, setBackgroundOptions] =
     useState<ISourceOptions>(BackgroundOptions);
+  const [particlesInit, setParticlesInit] = useState(false);
   const theme = useTheme();
+
+  //Load particles.js. This should only run once per lifetime
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+    }).then(() => {
+      setParticlesInit(true);
+    });
+  }, []);
 
   //Change particle color based on theme
   useEffect(() => {
@@ -27,8 +38,10 @@ const ParticleBackground = () => {
   }, [theme.currentTheme]);
 
   return (
-    <div className='blur-[2px] w-full h-screen fixed'>
-      <Particles id='backgroundParticles' options={backgroundOptions} />
+    <div className='blur-[5px] w-full h-screen fixed'>
+      {particlesInit && (
+        <Particles id='backgroundParticles' options={backgroundOptions} />
+      )}
     </div>
   );
 };

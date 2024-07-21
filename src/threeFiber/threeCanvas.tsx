@@ -9,7 +9,7 @@ const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ children }) => {
     <Canvas
       orthographic
       camera={{ zoom: 50, position: [0, 0, 10], near: 0 }}
-      className='bg-transparent'
+      className='bg-transparent select-none'
     >
       <ambientLight intensity={2.5} />
       {children}

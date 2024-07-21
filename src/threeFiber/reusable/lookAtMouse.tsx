@@ -63,11 +63,18 @@ export const LookAtMouse = ({
 
   useLookAtMouse(groupRef, enabled);
 
+  const handlePointer = (over: boolean) => {
+    if (!stopWhenHovered) return;
+
+    setEnabled(!over);
+    if (over) groupRef.current.lookAt(0, 0, 0);
+  };
+
   return (
     <group
       ref={groupRef}
-      onPointerOver={() => stopWhenHovered && setEnabled(false)}
-      onPointerOut={() => stopWhenHovered && setEnabled(true)}
+      onPointerOver={() => handlePointer(true)}
+      onPointerOut={() => handlePointer(false)}
     >
       {children}
     </group>

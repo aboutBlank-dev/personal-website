@@ -24,11 +24,6 @@ export const CoinWithImage = ({
     { rotation: [-0.3, 0.2, 0.1] },
   ];
 
-  const { rotation } = useSpring({
-    rotation: springs[springIndex].rotation,
-    config: { mass: 1, tension: 200, friction: 50 },
-  });
-
   // Transition between different rotations (by changing the index)
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,10 +37,7 @@ export const CoinWithImage = ({
   }, []);
 
   return (
-    <a.group
-      ref={meshRef}
-      // rotation={rotation as any}
-    >
+    <a.group ref={meshRef}>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[2, 2, 0.5, 32, 1, true]} />
         <meshStandardMaterial
