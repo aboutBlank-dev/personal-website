@@ -42,7 +42,7 @@ const useLookAtMouse = (
     vector.sub(camera.position).normalize();
     const distance = -camera.position.z / vector.z;
     target.current.copy(camera.position).add(vector.multiplyScalar(distance));
-    target.current.z = 0.4;
+    target.current.z = 0.2;
 
     // Make the object look at the target position
     objectRef.current.lookAt(target.current);

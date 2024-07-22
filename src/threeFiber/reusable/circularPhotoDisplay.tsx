@@ -1,6 +1,6 @@
-import { CoinWithImage } from "../threeFiber/coinWithImage";
-import { LookAtMouse } from "../threeFiber/reusable/lookAtMouse";
-import ThreeCanvas from "../threeFiber/threeCanvas";
+import { CoinWithImage } from "../coinWithImage";
+import ThreeCanvas from "../threeCanvas";
+import { LookAtMouse } from "./lookAtMouse";
 
 interface CiruclarPhotoDisplayProps {
   photoUrl: string;
