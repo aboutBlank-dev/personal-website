@@ -11,7 +11,7 @@ export const About = () => {
   }, []);
 
   return (
-    <section id='about' className='pt-6'>
+    <section id='about' className='pt-24 pb-4'>
       <Markdown children={content} />
     </section>
   );

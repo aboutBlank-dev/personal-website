@@ -46,27 +46,20 @@ export const Experience = () => {
   }, []);
 
   return (
-    <section id='experience' className='pt-6'>
+    <section id='experience' className='flex flex-col gap-4 pb-4'>
       {experience &&
         experience.map((experience, i) => {
-          return (
-            <ExperienceCard
-              key={i}
-              experience={experience}
-              addMargin={i !== 0}
-            />
-          );
+          return <ExperienceCard key={i} experience={experience} />;
         })}
     </section>
   );
 };
 interface ExperienceCardProps {
   experience: Experience;
-  addMargin: boolean;
 }
-const ExperienceCard = ({ experience, addMargin }: ExperienceCardProps) => {
+const ExperienceCard = ({ experience }: ExperienceCardProps) => {
   return (
-    <div className={addMargin ? "mt-6" : ""}>
+    <div>
       <h2>{experience.data.title}</h2>
       <p>{experience.data.date}</p>
       <ReactMarkdown>{experience.content}</ReactMarkdown>

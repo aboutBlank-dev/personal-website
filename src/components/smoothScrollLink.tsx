@@ -8,7 +8,7 @@ export const SmoothScrollLink = ({ to, children }: SmoothScrollLinkProps) => {
     e.preventDefault();
     const element = document.querySelector(to);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth", inline: "start" });
 
       window.history.pushState(
         {},

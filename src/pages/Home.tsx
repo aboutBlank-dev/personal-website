@@ -13,21 +13,22 @@ export const Home = () => {
     <ThemeContextProvider>
       <ParticleBackground />
       <div className='mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0'>
-        <div className='lg:flex lg:justify-between lg:gap-4'>
-          <header className='lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24'>
+        <div className='lg:flex lg:gap-24'>
+          <header className='lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/3 lg:flex-col lg:justify-between lg:py-24'>
             {/* Left Side */}
-            <div>
-              <div className='h-60 w-60'>
+            <div className='flex flex-col'>
+              <div className='h-56'>
                 <CircularPhotoDisplay photoUrl={JoseImage} />
               </div>
-              <h1 className='text-4xl font-bold text-slate-200'>José Colaco</h1>
-              <h2 className='text-lg mt-3'> Junior Developer </h2>
-              <p className='mt-3'> I Try to do things... I don't know... </p>
-              <NavBar />
+              <h1 className='text-4xl font-bold text-slate-200 text-center '>
+                José Colaco
+              </h1>
+              <h2 className='text-lg mt-3 text-center'> Developer </h2>
             </div>
+            <NavBar />
             <Socials />
           </header>
-          <main className='pt-16 lg:w-1/2 lg:py-24'>
+          <main className='lg:w-2/3 lg:pb-24 flex flex-col'>
             {/* Right side */}
             <About />
             <Experience />

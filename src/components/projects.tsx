@@ -53,7 +53,7 @@ export const Projects = () => {
   }, []);
 
   return (
-    <section id='projects' className='pt-6'>
+    <section id='projects' className='flex flex-col gap-4 pb-4'>
       {projects &&
         projects.map((project, i) => {
           return <ProjectCard key={i} project={project} addMargin={i !== 0} />;
@@ -69,7 +69,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, addMargin }: ProjectCardProps) => {
   return (
-    <div className={addMargin ? "mt-6" : ""}>
+    <div>
       <h2>{project.data.title}</h2>
       <p>{project.data.date}</p>
       <ReactMarkdown>{project.content}</ReactMarkdown>
