@@ -1,5 +1,5 @@
 import { Center, Text3D } from "@react-three/drei";
-import { useTheme } from "../contexts/themeContext";
+import { useTheme } from "../hooks/useTheme";
 
 const AboutBlankText = () => {
   const theme = useTheme();

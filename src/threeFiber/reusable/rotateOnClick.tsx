@@ -22,7 +22,7 @@ export const RotateOnClick = ({
   };
 
   // Rotate the object
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (rotate && groupRef.current) {
       const rotationSpeed = (Math.PI * 2) / rotationTime; // Calculate rotation speed based on rotation time
       const newRotationAmount = rotationAmount + rotationSpeed * delta;

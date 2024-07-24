@@ -1,14 +1,33 @@
-type Props = {
-  isTopOfPage?: boolean;
-  setSelectedPage?: (page: string) => void;
-};
+import { useEffect } from "react";
+import { SmoothScrollLink } from "./smoothScrollLink";
 
-function NavBar({}: Props) {
+export const NavBar = () => {
+  useEffect(() => {
+    // scroll to hash
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [window.location.hash]);
+
   return (
-    <nav>
-      <div className='bg-slate-500 fixed top-0 w-full'> Test </div>
+    <nav className='nav hidden lg:block'>
+      <ul className='mt-16 w-max'>
+        <li>
+          <SmoothScrollLink to='#about'>About</SmoothScrollLink>
+        </li>
+        <li>
+          <SmoothScrollLink to='#experience'>Experience</SmoothScrollLink>
+        </li>
+        <li>
+          <SmoothScrollLink to='#projects'>Projects</SmoothScrollLink>
+        </li>
+      </ul>
     </nav>
   );
-}
-
-export default NavBar;
+};

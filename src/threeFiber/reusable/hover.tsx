@@ -11,7 +11,7 @@ export const Hover = ({ children, hoverIntensity = 0.1 }: HoverProps) => {
   const groupRef = useRef<Group>(null!);
   const [hovered, setHovered] = useState(false);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (groupRef.current) {
       // Add hover effect
       groupRef.current.position.y = hovered

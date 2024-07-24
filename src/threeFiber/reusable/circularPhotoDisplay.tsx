@@ -3,6 +3,7 @@ import ThreeCanvas from "../threeCanvas";
 import { LookAtMouse } from "./lookAtMouse";
 
 interface CiruclarPhotoDisplayProps {
+  //photoUrl with type of path
   photoUrl: string;
 }
 

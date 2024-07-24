@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { ISourceOptions } from "@tsparticles/engine";
-import { useTheme } from "../contexts/themeContext";
 import { loadFull } from "tsparticles";
+import { useTheme } from "../hooks/useTheme";
 
 const LightParticleColor = "#964B00";
 const DarkParticleColor = "#ffffff";
@@ -22,7 +22,7 @@ const ParticleBackground = () => {
     });
   }, []);
 
-  //Change particle color based on theme
+  //Change particle color when theme changes
   useEffect(() => {
     setBackgroundOptions((prevOptions) => {
       const newOptions = { ...prevOptions };

@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 type ProjectData = {
   title: string;
   date: string;
-  order: number;
+  priority: number;
 };
 
 type Project = {
@@ -24,10 +24,16 @@ export const Projects = () => {
         import.meta.glob("../assets/projects/*.md")
       );
 
+      //Unfortunately an annoying workaround is needed or else vite will yell at you since they need to know
+      //the file paths at build time.
+      const fileNamesWithoutExtension = projectFilePaths.map((filePath) =>
+        filePath.replace("../assets/projects/", "").replace(".md", "")
+      );
+
       //Load each file and parse the content and data
       const projectFiles: Project[] = await Promise.all(
-        projectFilePaths.map(async (filePath) => {
-          const file = await import(/* @vite-ignore */ filePath + "?raw"); //"?raw" is used to get the text content of the file straight away
+        fileNamesWithoutExtension.map(async (fileName) => {
+          const file = await import(`../assets/projects/${fileName}.md?raw`); //"?raw" is used to get the text content of the file straight away
           const { content, data } = matter(file.default);
           return { content, data: data as ProjectData };
         })
@@ -35,9 +41,9 @@ export const Projects = () => {
 
       //Sort projects by defined order in respective markdown files
       projectFiles.sort((a, b) => {
-        const aOrder = a.data.order || 0;
-        const bOrder = b.data.order || 0;
-        return aOrder - bOrder;
+        const aPriority = a.data.priority || 0;
+        const bPriority = b.data.priority || 0;
+        return bPriority - aPriority;
       });
 
       setProjects(projectFiles);
@@ -47,18 +53,23 @@ export const Projects = () => {
   }, []);
 
   return (
-    <div>
+    <section id='projects' className='pt-6'>
       {projects &&
         projects.map((project, i) => {
-          return <ProjectCard key={i} {...project} />;
+          return <ProjectCard key={i} project={project} addMargin={i !== 0} />;
         })}
-    </div>
+    </section>
   );
 };
 
-const ProjectCard = (project: Project) => {
+interface ProjectCardProps {
+  project: Project;
+  addMargin: boolean;
+}
+
+const ProjectCard = ({ project, addMargin }: ProjectCardProps) => {
   return (
-    <div className='mt-6'>
+    <div className={addMargin ? "mt-6" : ""}>
       <h2>{project.data.title}</h2>
       <p>{project.data.date}</p>
       <ReactMarkdown>{project.content}</ReactMarkdown>
