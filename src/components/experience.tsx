@@ -45,6 +45,8 @@ export const Experience = () => {
     loadFiles();
   }, []);
 
+  if (!experience.length) return null;
+
   return (
     <section id='experience' className='flex flex-col gap-4 pt-8'>
       {experience &&

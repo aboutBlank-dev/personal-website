@@ -4,8 +4,10 @@ import GithubIcon from "../assets/svg/github_icon.svg?react";
 import LinkedInIcon from "../assets/svg/linkedin_icon.svg?react";
 import EmailIcon from "../assets/svg/email_icon.svg?react";
 import { Tooltip } from "react-tooltip";
+import { useTheme } from "../hooks/useTheme";
 
 export const Socials = () => {
+  const theme = useTheme();
   return (
     <div className='flex flex-col gap-2'>
       <ul className='flex justify-center lg:justify-normal mt-8 gap-4 items-center'>
@@ -18,7 +20,7 @@ export const Socials = () => {
           >
             <GithubIcon
               className='w-8 h-8 group-hover:scale-125 transition-transform duration-100'
-              fill='white'
+              fill={theme.currentTheme === "dark" ? "white" : "black"}
             />
           </a>
         </li>
@@ -30,7 +32,7 @@ export const Socials = () => {
           >
             <LinkedInIcon
               className='w-8 h-8 group-hover:scale-125 transition-transform duration-100'
-              fill='white'
+              fill={theme.currentTheme === "dark" ? "white" : "black"}
             />
           </a>
         </li>
@@ -38,7 +40,7 @@ export const Socials = () => {
           <a href='mailto:josecolaco1999@gmail.com' target='_top'>
             <EmailIcon
               className='w-8 h-8 group-hover:scale-125 transition-transform duration-100'
-              fill='white'
+              fill={theme.currentTheme === "dark" ? "white" : "black"}
             />
           </a>
         </li>

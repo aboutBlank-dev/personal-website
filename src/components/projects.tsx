@@ -52,6 +52,8 @@ export const Projects = () => {
     loadFiles();
   }, []);
 
+  if (!projects.length) return null;
+
   return (
     <section id='projects' className='flex flex-col gap-4 pt-8'>
       {projects &&

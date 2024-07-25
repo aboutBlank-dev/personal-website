@@ -5,11 +5,15 @@ import { Group } from "three";
 interface RotateOnClickProps {
   children: React.ReactNode;
   rotationTime?: number;
+  onRotationStarted?: () => void;
+  onRotationEnded?: () => void;
 }
 
 export const RotateOnClick = ({
   children,
   rotationTime = 1,
+  onRotationStarted,
+  onRotationEnded,
 }: RotateOnClickProps): React.ReactNode => {
   const groupRef = useRef<Group>(null!);
   const [rotate, setRotate] = useState(false);
@@ -19,6 +23,8 @@ export const RotateOnClick = ({
   const handlePointerDown = () => {
     setRotate(true);
     setRotationAmount(0);
+
+    if (onRotationStarted) onRotationStarted();
   };
 
   // Rotate the object
@@ -31,6 +37,8 @@ export const RotateOnClick = ({
         setRotate(false);
         groupRef.current.rotation.y = Math.PI * 2 - rotationAmount; // Complete the rotation
         setRotationAmount(0);
+
+        if (onRotationEnded) onRotationEnded();
       } else {
         groupRef.current.rotation.y += rotationSpeed * delta;
         setRotationAmount(newRotationAmount);

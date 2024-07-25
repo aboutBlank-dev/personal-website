@@ -48,35 +48,39 @@ const useLookAtMouse = (
     objectRef.current.lookAt(target.current);
   });
 
-  if (!enabled) {
-    objectRef.current?.lookAt(0, 0, 0);
-  }
+  useEffect(() => {
+    if (!enabled) {
+      objectRef.current?.lookAt(0, 0, 0);
+    }
+  }, [enabled]);
 };
 
 interface LookAtMouseProps {
   children: React.ReactNode;
+  enabled?: boolean;
   stopWhenHovered?: boolean;
 }
 
 export const LookAtMouse = ({
   children,
+  enabled = true,
   stopWhenHovered = true,
 }: LookAtMouseProps) => {
   const groupRef = useRef<Group>(null!);
-  const [enabled, setEnabled] = useState(true);
+  const [lookEnabled, setLookEnabled] = useState(false);
 
-  useLookAtMouse(groupRef, enabled);
-
-  const handlePointer = (over: boolean) => {
+  const handleHover = (hovered: boolean) => {
     if (!stopWhenHovered) return;
-    setEnabled(!over);
+    setLookEnabled(!hovered);
   };
+
+  useLookAtMouse(groupRef, lookEnabled && enabled);
 
   return (
     <group
       ref={groupRef}
-      onPointerOver={() => handlePointer(true)}
-      onPointerOut={() => handlePointer(false)}
+      onPointerLeave={() => handleHover(false)}
+      onPointerOver={() => handleHover(true)}
     >
       {children}
     </group>

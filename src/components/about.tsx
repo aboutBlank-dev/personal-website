@@ -10,6 +10,8 @@ export const About = () => {
     });
   }, []);
 
+  if (!content) return null;
+
   return (
     <section id='about' className='pt-24 pb-4'>
       <Markdown children={content} />

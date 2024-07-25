@@ -7,6 +7,7 @@ import { Socials } from "../components/socials";
 import { ThemeContextProvider } from "../contexts/themeContext";
 import { CircularPhotoDisplay } from "../threeFiber/reusable/circularPhotoDisplay";
 import JoseImage from "../assets/Photo_Jose.png";
+import { Tooltip } from "react-tooltip";
 
 export const Home = () => {
   return (
@@ -17,13 +18,11 @@ export const Home = () => {
           <header className='lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/3 lg:flex-col lg:justify-between lg:py-24'>
             {/* Left Side */}
             <div className='flex flex-col'>
-              <div className='h-56'>
-                <CircularPhotoDisplay photoUrl={JoseImage} />
-              </div>
-              <h1 className='text-4xl font-bold text-slate-200 text-center mt-2'>
+              <CircularPhotoDisplay photoUrl={JoseImage} className='h-56' />
+              <h1 className='text-4xl font-bold text-center mt-2'>
                 José Colaco
               </h1>
-              <h2 className='text-lg mt-3 text-center'> Developer </h2>
+              <h2 className='text-lg mt-3 text-center'> Software Engineer </h2>
             </div>
             <NavBar />
             <Socials />
@@ -33,7 +32,6 @@ export const Home = () => {
             <About />
             <Experience />
             <Projects />
-            {/* Contact me ? */}
           </main>
         </div>
       </div>

@@ -3,20 +3,22 @@ import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { DoubleSide, Group, Texture } from "three";
 import { useTheme } from "../hooks/useTheme";
+import { GroupProps } from "@react-three/fiber";
 
-interface CoinWithImageProps {
+interface CoinWithImageProps extends GroupProps {
   imageUrl: string;
 }
 
 export const CoinWithImage = ({
   imageUrl,
+  ...props
 }: CoinWithImageProps): React.ReactNode => {
   const theme = useTheme();
   const texture: Texture = useTexture(imageUrl);
   const meshRef = useRef<Group>(null!);
 
   return (
-    <a.group ref={meshRef}>
+    <a.group ref={meshRef} {...props}>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[2, 2, 0.5, 32, 1, true]} />
         <meshStandardMaterial

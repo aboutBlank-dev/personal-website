@@ -1,15 +1,16 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, CanvasProps } from "@react-three/fiber";
+import React from "react";
 
-interface ThreeCanvasProps {
+interface ThreeCanvasProps extends CanvasProps {
   children: React.ReactNode;
 }
 
-const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ children }) => {
+const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ children, ...props }) => {
   return (
     <Canvas
       orthographic
       camera={{ zoom: 50, position: [0, 0, 10], near: 0 }}
-      className='bg-transparent select-none'
+      {...props}
     >
       <ambientLight intensity={2.5} />
       {children}
