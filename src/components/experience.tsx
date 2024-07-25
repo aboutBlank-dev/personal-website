@@ -46,7 +46,7 @@ export const Experience = () => {
   }, []);
 
   return (
-    <section id='experience' className='flex flex-col gap-4 pb-4'>
+    <section id='experience' className='flex flex-col gap-4 pt-8'>
       {experience &&
         experience.map((experience, i) => {
           return <ExperienceCard key={i} experience={experience} />;

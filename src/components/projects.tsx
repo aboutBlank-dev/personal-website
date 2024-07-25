@@ -53,10 +53,10 @@ export const Projects = () => {
   }, []);
 
   return (
-    <section id='projects' className='flex flex-col gap-4 pb-4'>
+    <section id='projects' className='flex flex-col gap-4 pt-8'>
       {projects &&
         projects.map((project, i) => {
-          return <ProjectCard key={i} project={project} addMargin={i !== 0} />;
+          return <ProjectCard key={i} project={project} />;
         })}
     </section>
   );
@@ -64,10 +64,9 @@ export const Projects = () => {
 
 interface ProjectCardProps {
   project: Project;
-  addMargin: boolean;
 }
 
-const ProjectCard = ({ project, addMargin }: ProjectCardProps) => {
+const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div>
       <h2>{project.data.title}</h2>

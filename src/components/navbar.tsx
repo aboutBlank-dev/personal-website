@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, scrollSpy } from "react-scroll";
 import "../styles/navbar.css";
-import { Scroll } from "@react-three/drei";
 
 function scrollDuration(distanceInPx: number) {
   const duration = (distanceInPx / 2) * 1.5;

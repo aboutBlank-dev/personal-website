@@ -20,7 +20,7 @@ export const Home = () => {
               <div className='h-56'>
                 <CircularPhotoDisplay photoUrl={JoseImage} />
               </div>
-              <h1 className='text-4xl font-bold text-slate-200 text-center '>
+              <h1 className='text-4xl font-bold text-slate-200 text-center mt-2'>
                 José Colaco
               </h1>
               <h2 className='text-lg mt-3 text-center'> Developer </h2>
