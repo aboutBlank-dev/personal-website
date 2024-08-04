@@ -14,6 +14,7 @@ export const About = () => {
 
   return (
     <section id='about' className='pt-24 pb-4'>
+      <h1 className='mb-4'> About Me </h1>
       <Markdown children={content} />
     </section>
   );

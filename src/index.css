@@ -2,13 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+body.dark {
+  color: white;
+  background-color: #202023;
+}
+
+body.light {
+  color: black;
+  background-color: #f0e7db;
+}
+
 /* By default, tailwind has unstyled headers. I am modifying it so it reflects when reading MD files. */
 @layer base {
   h1 {
-    @apply text-4xl;
+    @apply text-4xl font-bold;
   }
   h2 {
-    @apply text-3xl;
+    @apply text-3xl font-bold;
   }
   h3 {
     @apply text-2xl;
@@ -17,8 +27,12 @@
     @apply text-xl;
   }
 
-  a {
-    @apply text-blue-500 underline;
+  ul {
+    @apply list-disc list-inside;
+  }
+
+  li {
+    @apply mb-1;
   }
 }
 
@@ -39,24 +53,6 @@
     fill 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out,
     fill 0.2s ease-in-out;
-}
-
-/* Any text that has .dark class */
-.dark {
-  color: #f0e7db;
-}
-
-/* Any text that has .light class */
-.light {
-  color: #202023;
-}
-
-body.dark {
-  background-color: #202023;
-}
-
-body.light {
-  background-color: #f0e7db;
 }
 
 .no-transition * {

@@ -1,11 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
 import { CoinWithImage } from "../coinWithImage";
 import ThreeCanvas from "../threeCanvas";
 import { LookAtMouse } from "./lookAtMouse";
 import { RotateOnClick } from "./rotateOnClick";
-import { Tooltip } from "react-tooltip";
-import { Group, Object3DEventMap } from "three";
 
 interface CiruclarPhotoDisplayProps
   extends React.HTMLAttributes<HTMLDivElement> {

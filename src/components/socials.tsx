@@ -10,7 +10,7 @@ export const Socials = () => {
   const theme = useTheme();
   return (
     <div className='flex flex-col gap-2'>
-      <ul className='flex justify-center lg:justify-normal mt-8 gap-4 items-center'>
+      <ul className='flex justify-center lg:justify-normal mt-8 gap-4 items-center list-none'>
         <li className='group'>
           <a
             href='https://github.com/aboutBlank-dev'
@@ -19,7 +19,7 @@ export const Socials = () => {
             className='group-hover:scale-110 transition-transform duration-300'
           >
             <GithubIcon
-              className='w-8 h-8 group-hover:scale-125 transition-transform duration-100'
+              className='w-8 h-8 group-hover:scale-125 transition-transform duration-200'
               fill={theme.currentTheme === "dark" ? "white" : "black"}
             />
           </a>

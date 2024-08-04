@@ -1,10 +1,19 @@
+/// <reference types="vite-plugin-svgr/client" />
+
 import matter from "gray-matter";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import HoverableCard from "./hoverableCard";
+import { SkillsDisplay } from "./skillsDisplay";
+import GithubIcon from "../assets/svg/github_icon.svg?react";
+import { useTheme } from "../hooks/useTheme";
 
 type ProjectData = {
   title: string;
-  date: string;
+  skills: string[];
+  projectUrl: string;
+  gifFileName?: string;
+  imageFileName?: string; //has to be a png
   priority: number;
 };
 
@@ -15,6 +24,7 @@ type Project = {
 
 export const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
+  const theme = useTheme();
 
   //Load all project files from the assets/projects directory
   useEffect(() => {
@@ -56,10 +66,25 @@ export const Projects = () => {
 
   return (
     <section id='projects' className='flex flex-col gap-4 pt-8'>
+      <h2>Projects</h2>
+      <div className='w-full h-0.5 bg-gray-500' />
+
       {projects &&
         projects.map((project, i) => {
           return <ProjectCard key={i} project={project} />;
         })}
+      <HoverableCard
+        className='flex items-center gap-4 cursor-pointer'
+        onClick={() =>
+          window.open("https://github.com/aboutBlank-dev", "_blank")
+        }
+      >
+        <GithubIcon
+          className='w-16 h-16 group-hover:scale-125 transition-transform duration-200'
+          fill={theme.currentTheme === "dark" ? "white" : "black"}
+        />
+        <p className='text-md'>More projects over at my Github Profile !</p>
+      </HoverableCard>
     </section>
   );
 };
@@ -69,11 +94,36 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const [image, setImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    //If project has both image and gif path, use gif path
+    if (project.data.gifFileName) {
+      import(`../assets/projects/${project.data.gifFileName}.gif`).then(
+        (image) => setImage(image.default)
+      );
+    } else if (project.data.imageFileName) {
+      import(`../assets/projects/${project.data.imageFileName}.png`).then(
+        (image) => setImage(image.default)
+      );
+    }
+  }, [project.data.gifFileName, project.data.imageFileName]);
+
+  const handleOnClick = () => {
+    if (project.data.projectUrl) window.open(project.data.projectUrl, "_blank");
+  };
+
+  const clickable = project.data.projectUrl ? "cursor-pointer" : "";
   return (
-    <div>
-      <h2>{project.data.title}</h2>
-      <p>{project.data.date}</p>
-      <ReactMarkdown>{project.content}</ReactMarkdown>
-    </div>
+    <HoverableCard className={clickable} onClick={() => handleOnClick()}>
+      <h3 className='font-bold'>{project.data.title}</h3>
+      <div className='flex my-4'>
+        {image ? (
+          <img className='h-32 rounded-md' src={image ? image : ""} />
+        ) : null}
+      </div>
+      <ReactMarkdown className={"mt-2"}>{project.content}</ReactMarkdown>
+      <SkillsDisplay className='mt-4' skills={project.data.skills} />
+    </HoverableCard>
   );
 };

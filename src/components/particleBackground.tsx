@@ -38,7 +38,7 @@ const ParticleBackground = () => {
   }, [theme.currentTheme]);
 
   return (
-    <div className='blur-[5px] w-full h-screen fixed z-[-10]'>
+    <div className='blur-[2px] w-full h-screen fixed z-[-10]'>
       {particlesInit && (
         <Particles id='backgroundParticles' options={backgroundOptions} />
       )}
