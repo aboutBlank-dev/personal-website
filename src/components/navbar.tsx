@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { Link, scrollSpy } from "react-scroll";
 import "../styles/navbar.css";
 
