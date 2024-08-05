@@ -1,5 +1,4 @@
 /* select any child including sub children of nav with active class */
 nav a.active span {
-  @apply text-slate-200;
   @apply w-16;
 }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, scrollSpy } from "react-scroll";
 import "../styles/navbar.css";
 
@@ -9,7 +9,7 @@ function scrollDuration(distanceInPx: number) {
 
 export const NavBar = () => {
   useEffect(() => {
-    // scroll to hash
+    // scroll to hash on load
     const hash = window.location.hash;
     if (hash) {
       setTimeout(() => {
@@ -44,13 +44,13 @@ const ScrollLink = ({ to, text }: { to: string; text: string }) => {
     <Link
       to={to}
       smooth={true}
-      spy={true}
-      hashSpy={true}
       duration={scrollDuration}
       className='cursor-pointer select-none'
     >
       <div className='flex items-center group'>
-        <span className='mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200' />
+        <span
+          className={`mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16`}
+        />
         <span>{text}</span>
       </div>
     </Link>

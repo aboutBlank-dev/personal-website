@@ -54,7 +54,7 @@ export const Experience = () => {
   if (!experience.length) return null;
 
   return (
-    <section id='experience' className='flex flex-col gap-4 pt-8'>
+    <section id='experience' className='flex flex-col gap-4 pt-16'>
       <h2> Experience </h2>
       <div className='w-full h-0.5 bg-gray-500' />
       {experience &&

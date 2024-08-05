@@ -65,7 +65,7 @@ export const Projects = () => {
   if (!projects.length) return null;
 
   return (
-    <section id='projects' className='flex flex-col gap-4 pt-8'>
+    <section id='projects' className='flex flex-col gap-4 pt-16'>
       <h2>Projects</h2>
       <div className='w-full h-0.5 bg-gray-500' />
 
