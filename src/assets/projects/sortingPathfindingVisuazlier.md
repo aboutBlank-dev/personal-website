@@ -1,7 +1,7 @@
 ---
 priority: 3
 title: Sorting and Pathfinding Visualizer
-projectUrl: https://aboutblank.dev/sorting-visualizer/quick
+relativeUrl: /sorting-visualizer
 gifFileName: sortingVisualizer
 skills: [Vite, React, TypeScript, CSS, HTML]
 ---

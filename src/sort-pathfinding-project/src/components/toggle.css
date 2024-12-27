@@ -1,0 +1,16 @@
+.toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-label {
+  color: var(--text-header-color);
+  font-size: 0.8rem;
+}
+
+.checkbox {
+  margin-right: 0.5rem;
+  transform: scale(1.5);
+}

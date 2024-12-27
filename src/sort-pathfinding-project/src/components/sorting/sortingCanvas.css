@@ -1,0 +1,4 @@
+.canvas-container {
+  flex: 1; /* Fill the remaining space */
+  min-height: 0; /* Allow the container to shrink */
+}

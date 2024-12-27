@@ -7,11 +7,13 @@ import HoverableCard from "./hoverableCard";
 import { SkillsDisplay } from "./skillsDisplay";
 import GithubIcon from "../assets/svg/github_icon.svg?react";
 import { useTheme } from "../hooks/useTheme";
+import { useNavigate } from "react-router-dom";
 
 type ProjectData = {
   title: string;
   skills: string[];
-  projectUrl: string;
+  projectUrl?: string;
+  relativeUrl?: string;
   gifFileName?: string;
   imageFileName?: string; //has to be a png
   priority: number;
@@ -95,6 +97,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const [image, setImage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     //If project has both image and gif path, use gif path
@@ -110,7 +113,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   }, [project.data.gifFileName, project.data.imageFileName]);
 
   const handleOnClick = () => {
-    if (project.data.projectUrl) window.open(project.data.projectUrl, "_blank");
+    if (project.data.relativeUrl) navigate(project.data.relativeUrl);
+    else if (project.data.projectUrl)
+      window.open(project.data.projectUrl, "_blank");
   };
 
   const clickable = project.data.projectUrl ? "cursor-pointer" : "";

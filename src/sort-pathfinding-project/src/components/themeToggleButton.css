@@ -1,0 +1,15 @@
+.theme-toggle-btn {
+  display: block;
+  border: none;
+  background: none;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.theme-svg {
+  fill: #000;
+}
+
+body.dark .theme-svg {
+  fill: #fff;
+}

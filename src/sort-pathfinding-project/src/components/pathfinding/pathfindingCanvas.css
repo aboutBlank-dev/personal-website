@@ -1,0 +1,9 @@
+.canvas-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex: 1; /*Fill the remaining space */
+  min-height: 0; /* Allow the container to shrink */
+}
+
+.canvas-container > canvas { position: absolute; }

@@ -3,13 +3,12 @@ import { Experience } from "../components/experience";
 import { NavBar } from "../components/navbar";
 import { Projects } from "../components/projects";
 import { Socials } from "../components/socials";
-import { ThemeContextProvider } from "../contexts/themeContext";
 import { CircularPhotoDisplay } from "../threeFiber/reusable/circularPhotoDisplay";
 import JoseImage from "../assets/Photo_Jose.png";
 
 export const Home = () => {
   return (
-    <ThemeContextProvider>
+    <>
       {/* <ParticleBackground /> */}
       <div className='mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0'>
         <div className='lg:flex lg:gap-24'>
@@ -33,6 +32,6 @@ export const Home = () => {
           </main>
         </div>
       </div>
-    </ThemeContextProvider>
+    </>
   );
 };
