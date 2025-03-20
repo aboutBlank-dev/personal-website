@@ -33,6 +33,7 @@
 .nav-bar li {
   display: flex;
   align-items: center;
+  margin-bottom: 0;
 }
 
 .my-logo-container {
