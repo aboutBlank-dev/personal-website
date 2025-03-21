@@ -118,7 +118,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       window.open(project.data.projectUrl, "_blank");
   };
 
-  const clickable = project.data.projectUrl ? "cursor-pointer" : "";
+  const clickable =
+    project.data.projectUrl || project.data.relativeUrl ? "cursor-pointer" : "";
   return (
     <HoverableCard className={clickable} onClick={() => handleOnClick()}>
       <h3 className='font-bold'>{project.data.title}</h3>
