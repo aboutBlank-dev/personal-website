@@ -26,7 +26,6 @@ type Project = {
 
 export const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
-  const theme = useTheme();
 
   //Load all project files from the assets/projects directory
   useEffect(() => {
@@ -74,22 +73,13 @@ export const Projects = () => {
       {projects &&
         projects.map((project, i) => {
           return <ProjectCard key={i} project={project} />;
-        })}
-      <HoverableCard
-        className='flex items-center gap-4 cursor-pointer'
-        onClick={() =>
-          window.open("https://github.com/aboutBlank-dev", "_blank")
-        }
-      >
-        <GithubIcon
-          className='w-16 h-16 group-hover:scale-125 transition-transform duration-200'
-          fill={theme.currentTheme === "dark" ? "white" : "black"}
-        />
-        <p className='text-md'>More projects over at my Github Profile !</p>
-      </HoverableCard>
+      })}
+
+      <MoreProjectsCard />
     </section>
   );
 };
+
 
 interface ProjectCardProps {
   project: Project;
@@ -133,3 +123,20 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     </HoverableCard>
   );
 };
+
+const MoreProjectsCard = () => {
+  const theme = useTheme();
+
+  return (
+    <HoverableCard
+        className='flex items-center gap-4 cursor-pointer'
+        onClick={() => window.open("https://github.com/aboutBlank-dev", "_blank") }
+    >
+      <GithubIcon
+        className='w-16 h-16 group-hover:scale-125 transition-transform duration-200'
+        fill={theme.currentTheme === "dark" ? "white" : "black"}
+      />
+      <p className='text-md'>More projects over at my Github Profile !</p>
+    </HoverableCard>
+  )
+}

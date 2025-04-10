@@ -7,9 +7,15 @@ import { CircularPhotoDisplay } from "../threeFiber/reusable/circularPhotoDispla
 import JoseDarkImage from "../assets/Photo_Jose_Dark.jpg";
 import JoseLightImage from "../assets/Photo_Jose_Light.png";
 import { useTheme } from "../hooks/useTheme";
+import { useEffect, useState } from "react";
 
 export const Home = () => {
   const theme = useTheme();
+  const [image, setImage] = useState(theme.currentTheme === "dark" ? JoseDarkImage : JoseLightImage);
+
+  useEffect(() => {
+    setImage(theme.currentTheme === "dark" ? JoseDarkImage : JoseLightImage);
+  }, [theme.currentTheme]);
 
   return (
     <>
@@ -20,9 +26,7 @@ export const Home = () => {
             {/* Left Side */}
             <div className='flex flex-col'>
               <CircularPhotoDisplay
-                photoUrl={
-                  theme.currentTheme === "dark" ? JoseDarkImage : JoseLightImage
-                }
+                photoUrl={image}
                 className='h-56'
               />
               <h1 className='text-4xl font-bold text-center mt-2'>

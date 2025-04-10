@@ -51,7 +51,7 @@ export const RotateOnClick = ({
       ref={groupRef}
       onPointerDown={handlePointerDown}
       rotation={
-        rotate && groupRef.current ? groupRef.current.rotation : [0, 0, 0]
+        rotate ? groupRef.current.rotation : [0, 0, 0]
       }
     >
       {children}

@@ -18,13 +18,11 @@ export const CircularPhotoDisplay = ({
   const [hovered, setHovered] = useState(false);
   const theme = useTheme();
 
-  const handleRotation = (started: boolean) => {
-    if (started) {
+  const handleRotation = (rotating: boolean) => {
+    if (rotating)
       theme.toggleTheme();
-      setRotating(true);
-    } else {
-      setRotating(false);
-    }
+
+    setRotating(rotating);
   };
 
   // Change cursor on hover
