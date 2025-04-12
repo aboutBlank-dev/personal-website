@@ -15,7 +15,6 @@ const AboutBlankText = () => {
       </Text3D>
     </Center>
   );
-  return;
 };
 
 export default AboutBlankText;

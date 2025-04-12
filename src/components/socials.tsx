@@ -13,7 +13,7 @@ export const Socials = () => {
       <ul className='flex justify-center lg:justify-normal mt-8 gap-4 items-center list-none'>
         <li className='group'>
           <a
-            href='https://github.com/aboutBlank-dev'
+            href='https://github.com/aboutBlank0'
             target='_blank'
             rel='noreferrer'
             className='group-hover:scale-110 transition-transform duration-300'

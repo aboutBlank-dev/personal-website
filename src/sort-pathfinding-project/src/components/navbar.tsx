@@ -16,7 +16,7 @@ const NavBar = () => {
       </div>
       <div className='nav-bar-right'>
         <ThemeToggleButton />
-        <GithubButton projectLink='https://github.com/aboutBlank-dev/path-finding-sorting-visualizer' />
+        <GithubButton projectLink='https://github.com/aboutblank0/path-finding-sorting-visualizer' />
       </div>
     </nav>
   );

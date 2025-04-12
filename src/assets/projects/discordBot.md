@@ -1,6 +1,6 @@
 ---
 title: Pokemon TCG Discord Bot
-projectUrl: https://github.com/aboutBlank-dev/pokemon-tcg-discord-bot
+projectUrl: https://github.com/aboutblank0/pokemon-tcg-discord-bot
 priority: 5
 imageFileName: discordBot
 skills: [Python, SQLAlchemy, PostgreSQL, Docker, Alembic]

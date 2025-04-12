@@ -130,7 +130,7 @@ const MoreProjectsCard = () => {
   return (
     <HoverableCard
         className='flex items-center gap-4 cursor-pointer'
-        onClick={() => window.open("https://github.com/aboutBlank-dev", "_blank") }
+        onClick={() => window.open("https://github.com/aboutblank0", "_blank") }
     >
       <GithubIcon
         className='w-16 h-16 group-hover:scale-125 transition-transform duration-200'
